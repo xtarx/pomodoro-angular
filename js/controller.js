@@ -37,10 +37,10 @@
         };
 
         $scope.stop = function () {
-            $scope.initialRun = true;        
+            $scope.initialRun = true;
             $scope.current = null;
             $scope.isActive = false;
-            $scope.isBreak=false;
+            $scope.isBreak = false;
             $scope.humanTime = _pad(pomodorTime, 2) + ':' + _pad(0, 2);
             if (angular.isDefined(timer)) {
                 console.log("stoping pomodoro");
@@ -76,7 +76,7 @@
 
 
         var _runBreak = function (longBreak) {
-            
+
             var breakDuration = shortBreakTime * 60;
             if (longBreak) {
                 breakDuration = longBreakTime * 60;
@@ -86,7 +86,7 @@
                 left: breakDuration
             };
             $scope.isActive = true;
-            $scope.isBreak=true;
+            $scope.isBreak = true;
             // Execute timer
             _runTimer(false);
             // Set a 1s interval for the timer

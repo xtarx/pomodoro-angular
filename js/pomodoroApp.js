@@ -22,3 +22,4 @@
 //TODO integrate TO-Do
 //TODO change global settings (pomodor duration and break intervals)
 //TODO Add watch instead of listenr
+//TODO FAQ

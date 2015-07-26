@@ -8,31 +8,29 @@
     <script src="js/pomodoroApp.js"></script>
     <script src="js/service.js"></script>
     <script src="js/controller.js"></script>
+    <script src="js/todo.js"></script>
     <script src="js/filters.js"></script>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/pomodoro.css">
 </head>
 
 <body class="container-fluid">
-    <h6>Abo el T</h6>
+
     <section ng-controller="pomodoroCtrl" class="text-center col-xs-12 form-inline">
 
-        <!--
-        <div ng-hide="current">
-            <input id="newTask" type="text" value="" placeholder="Task description" size="30" class="form-control" />
-            <button ng-click="start()" class="btn btn-primary btn-lg">Start task</button>
-        </div>
--->
+
+
+        <!--Pomodor timer-->
 
         <div>
-            <!--<h1>{{humanizeTimeleft()}}</h1>-->
+
 
             <h1 ng-class="{ 'break': isBreak }">{{humanTime}}</h1>
             <h2 class="mb3">{{current.txt}}</h2>
             <button ng-click="start()" ng-show="initialRun" class="btn btn-default">
                 <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Start</button>
 
-            <button class="btn btn-default" ng-show="isActive" ng-click="pause()" >
+            <button class="btn btn-default" ng-show="isActive" ng-click="pause()">
                 <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause</button>
 
             <button class="btn btn-info" ng-hide="isActive||initialRun" ng-click="resume()">
@@ -42,14 +40,27 @@
 
 
         </div>
+        <!--Pomodor timer-->
 
-        <ul ng-show="tasks.length > 0" class="mt3 list-unstyled">
-            <span>{{tasks.length}} tasks done:</span>
-            <li ng-repeat="task in tasks track by $index">
-                <input type="checkbox" checked />
-                <span class="done">{{task.txt}}</span>
-            </li>
-        </ul>
+        <!--to-do list-->
+        <div class="todo-wrapper" ng-controller="TodoCtrl">
+            <h2>You've got <span class="emphasis">{{todos.length}}</span> things to do</h2>
+            <ul>
+                <li ng-repeat="todo in todos track by $index">
+                    <input type="checkbox" ng-model="todo.done" />
+                    <span class="done-{{todo.done}}">{{todo.text}}</span>
+                </li>
+            </ul>
+            <form name="t">
+                <input required class="add-input" placeholder="I need to..." type="text" ng-model="formTodoText" ng-model-instant />
+                <button class="add-btn" ng-click="addTodo()" ng-show="">
+                    <h2>Add</h2></button>
+            </form>
+
+            <button class="clear-btn" ng-click="clearCompleted()">Clear completed</button>
+        </div>
+        <!--to-do list-->
+
     </section>
 </body>
 
