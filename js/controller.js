@@ -9,7 +9,7 @@
     function pomodoroCtrl($scope, $interval, store) {
         'use strict';
         var timer = null;
-        var pomodorTime = 25;
+        var pomodorTime = 0.2;
         var shortBreakTime = 5;
         var longBreakTime = 15;
         $scope.isActive = false;
@@ -19,6 +19,11 @@
         $scope.tasks = store.tasks;
         $scope.pomodoroCounter = 0;
         $scope.humanTime = "25:00";
+
+
+        
+        
+
 
         $scope.getNumber = function(num) {
             return new Array(num);   
@@ -53,6 +58,9 @@
         };
 
         $scope.finish = function (pomodoro) {
+            var audio = new Audio('audio/Ship_Bell-Mike_Koenig-1911209136.mp3');
+            audio.play();
+            
             store.add($scope.current)
                 .then(function success() {
                     $scope.current = null;
