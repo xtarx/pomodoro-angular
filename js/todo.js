@@ -35,7 +35,8 @@
 
 
         };
-        $scope.archive = function () {
+        $scope.archive = function (todo) {
+            todo.done=true;
             var oldTodos = $scope.todos;
             $scope.todos = [];
             angular.forEach(oldTodos, function (todo) {
@@ -49,6 +50,7 @@
         $scope.clearCompleted = function () {
             $scope.archive();
         };
+     
 
 
     }

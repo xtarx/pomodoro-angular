@@ -31,4 +31,35 @@ h2 {
     color: #27ae60;
 }
 
+.pomodoroCounter{
+    color: #e74c3c;
+
+}
+.pomodoroCounter span{
+    padding: 0 1px;
+
+}
 /*todolist */
+
+
+#addTodo input{
+    width: 100%;
+}
+
+.red{
+    color: #e74c3c;
+}
+
+/*
+input[type="checkbox"]{
+    margin-right: 15px;
+}
+*/
+
+#todoSection .list-group-item{
+    padding: 12px;
+}
+
+.todo-item {
+    padding-left: 12px;
+}

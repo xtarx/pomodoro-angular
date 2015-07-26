@@ -20,7 +20,10 @@
         $scope.pomodoroCounter = 0;
         $scope.humanTime = "25:00";
 
-
+        $scope.getNumber = function(num) {
+            return new Array(num);   
+        }
+        
         $scope.start = function () {
             $scope.isActive = true;
             $scope.initialRun = false;

@@ -18,8 +18,8 @@
 //TODO music when ends
 //TODO change background when close to finishing
 //TODO change tab text
-//TODO sync in cookie to be pressintent
-//TODO integrate TO-Do
+//TODO [X]sync in cookie to be pressintent
+//TODO [X]integrate TO-Do
 //TODO change global settings (pomodor duration and break intervals)
 //TODO Add watch instead of listenr
 //TODO FAQ

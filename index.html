@@ -16,52 +16,70 @@
 
 <body class="container-fluid">
 
-    <section ng-controller="pomodoroCtrl" class="text-center col-xs-12 form-inline">
+
+    <div class="row">
+
+
+        <div class="col-sm-4">
+            <section ng-controller="pomodoroCtrl" class="text-center col-xs-12 form-inline">
 
 
 
-        <!--Pomodor timer-->
+                <!--Pomodor timer-->
 
-        <div>
-
-
-            <h1 ng-class="{ 'break': isBreak }">{{humanTime}}</h1>
-            <h2 class="mb3">{{current.txt}}</h2>
-            <button ng-click="start()" ng-show="initialRun" class="btn btn-default">
-                <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Start</button>
-
-            <button class="btn btn-default" ng-show="isActive" ng-click="pause()">
-                <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause</button>
-
-            <button class="btn btn-info" ng-hide="isActive||initialRun" ng-click="resume()">
-                <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Resume</button>
-            <button class="btn btn-danger" ng-hide="initialRun" ng-click="stop()">
-                <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Stop</button>
+                <div>
 
 
+                    <h1 ng-class="{ 'break': isBreak }">{{humanTime}}</h1>
+                    <div class="pomodoroCounter">
+
+                        <span class="glyphicon glyphicon-record" ng-repeat="i in getNumber(pomodoroCounter)  track by $index"></span>
+                    </div>
+                    <h2 class="mb3">{{current.txt}}</h2>
+                    <button ng-click="start()" ng-show="initialRun" class="btn btn-default">
+                        <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Start</button>
+
+                    <button class="btn btn-default" ng-show="isActive" ng-click="pause()">
+                        <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause</button>
+
+                    <button class="btn btn-info" ng-hide="isActive||initialRun" ng-click="resume()">
+                        <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Resume</button>
+                    <button class="btn btn-danger" ng-hide="initialRun" ng-click="stop()">
+                        <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Stop</button>
+
+
+                </div>
+                <!--Pomodor timer-->
+
+                <!--to-do list-->
+
+            </section>
         </div>
-        <!--Pomodor timer-->
+        <div class="col-sm-8">
+            <section id='todoSection'>
+                <div class="todo-wrapper" ng-controller="TodoCtrl">
+                    <h2 class="red">YOU'VE GOT <span class="emphasis">{{todos.length}}</span> THINGS TO DO</h2>
+                    <form id="addTodo" name="t" ng-submit="addTodo()">
+                        <input required class=" add-input" placeholder="I need to..." type="text" ng-model="formTodoText" ng-model-instant />
 
-        <!--to-do list-->
-        <div class="todo-wrapper" ng-controller="TodoCtrl">
-            <h2>You've got <span class="emphasis">{{todos.length}}</span> things to do</h2>
-            <ul>
-                <li ng-repeat="todo in todos track by $index">
-                    <input type="checkbox" ng-model="todo.done" />
-                    <span class="done-{{todo.done}}">{{todo.text}}</span>
-                </li>
-            </ul>
-            <form name="t">
-                <input required class="add-input" placeholder="I need to..." type="text" ng-model="formTodoText" ng-model-instant />
-                <button class="add-btn" ng-click="addTodo()" ng-show="">
-                    <h2>Add</h2></button>
-            </form>
+                    </form>
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="todo in todos |orderBy:$index:true track by $index ">
 
-            <button class="clear-btn" ng-click="clearCompleted()">Clear completed</button>
+                            <span class="todo-item done-{{todo.done}}">{{todo.text}}</span>
+                            <span class="glyphicon glyphicon-remove pull-right red" aria-hidden="true" ng-click="archive(todo)"></span>
+                        </li>
+                    </ul>
+
+
+                    <!--                    <button class="clear-btn" ng-click="clearCompleted()">Clear completed</button>-->
+                </div>
+                <!--to-do list-->
+
+            </section>
         </div>
-        <!--to-do list-->
+    </div>
 
-    </section>
 </body>
 
 </html>
