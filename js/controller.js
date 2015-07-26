@@ -9,7 +9,7 @@
     function pomodoroCtrl($scope, $interval, store) {
         'use strict';
         var timer = null;
-        var pomodorTime = 0.2;
+        var pomodorTime = 25;
         var shortBreakTime = 5;
         var longBreakTime = 15;
         $scope.isActive = false;
