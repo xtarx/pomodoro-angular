@@ -4,12 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AngularJS Pomodoro App</title>
-    <script src="js/vendor/angular.min.js"></script>
-    <script src="js/pomodoroApp.js"></script>
-    <script src="js/service.js"></script>
-    <script src="js/controller.js"></script>
-    <script src="js/todo.js"></script>
-    <script src="js/filters.js"></script>
+
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/pomodoro.css">
 </head>
@@ -27,7 +22,7 @@
 
                 <!--Pomodor timer-->
 
-                <div>
+                <div ng-cloak>
 
 
                     <h1 ng-class="{ 'break': isBreak }">{{humanTime}}</h1>
@@ -81,5 +76,11 @@
     </div>
 
 </body>
+<script src="js/vendor/angular.min.js"></script>
+<script src="js/pomodoroApp.js"></script>
+<script src="js/service.js"></script>
+<script src="js/controller.js"></script>
+<script src="js/todo.js"></script>
+<script src="js/filters.js"></script>
 
 </html>

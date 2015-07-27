@@ -107,6 +107,7 @@
         };
 
         var _runPomodoro = function () {
+            $scope.isBreak = false;
             $scope.current = {
                 left: pomodorTime * 60
             };
