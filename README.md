@@ -2,7 +2,7 @@
 
 Pomodoro technique for time management app powered by angularJS
 
-![Screenshot](http://i.imgur.com/nI0pYn4.png)
+![Screenshot](http://i.imgur.com/uchNfHR.png)
 
 ## Demo
 http://xtarx.github.io/pomodoro-angular
@@ -12,7 +12,3 @@ http://xtarx.github.io/pomodoro-angular
 - Integrated with to-do list to keep track of current tasks.
 - Tasks are presisitent in localstorage.
 
-## ToDO
-- Easy to use timer.
-- Integrated with to-do list to keep track of current tasks.
-- Tasks are presisitent and saved in localstorage.
