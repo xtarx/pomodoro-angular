@@ -1,0 +1,65 @@
+body {
+    font-size: 20px!important;
+    padding: 6rem;
+    color: #444;
+}
+h1 {
+    font-size: 84px;
+}
+h2 {
+    color: #888;
+}
+.mt1 {
+    margin-top: 1rem;
+}
+.mt2 {
+    margin-top: 2rem;
+}
+.mt3 {
+    margin-top: 3rem;
+}
+.mb1 {
+    margin-bottom: 1rem;
+}
+.mb2 {
+    margin-bottom: 2rem;
+}
+.mb3 {
+    margin-bottom: 3rem;
+}
+.break {
+    color: #27ae60;
+}
+
+.pomodoroCounter{
+    color: #e74c3c;
+
+}
+.pomodoroCounter span{
+    padding: 0 1px;
+
+}
+/*todolist */
+
+
+#addTodo input{
+    width: 100%;
+}
+
+.red{
+    color: #e74c3c;
+}
+
+/*
+input[type="checkbox"]{
+    margin-right: 15px;
+}
+*/
+
+#todoSection .list-group-item{
+    padding: 12px;
+}
+
+.todo-item {
+    padding-left: 12px;
+}
