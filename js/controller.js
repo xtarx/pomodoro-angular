@@ -3,10 +3,10 @@
 
     angular
         .module('pomodoroApp')
-        .controller('pomodoroCtrl', ['$scope', '$interval', 'localStorage', pomodoroCtrl]);
+        .controller('pomodoroCtrl', ['$rootScope','$scope', '$interval', 'localStorage', pomodoroCtrl]);
 
 
-    function pomodoroCtrl($scope, $interval, store) {
+    function pomodoroCtrl($rootScope,$scope, $interval, store) {
         'use strict';
         var timer = null;
         var pomodorTime = 25;
@@ -18,21 +18,26 @@
         $scope.current = null;
         $scope.tasks = store.tasks;
         $scope.pomodoroCounter = 0;
-        $scope.humanTime = "25:00";
+        //        $rootScope.humanTime = "25:00";
+        $rootScope.humanTime = "25:00";
 
 
-        
-        
-
-
-        $scope.getNumber = function(num) {
-            return new Array(num);   
+        $scope.myFunct = function(keyEvent) {
+//            if (keyEvent.which === 13)
+                alert('I am an alert');
         }
-        
+
+
+
+
+        $scope.getNumber = function (num) {
+            return new Array(num);
+        }
+
         $scope.start = function () {
             $scope.isActive = true;
             $scope.initialRun = false;
-            $scope.humanTime = _pad(pomodorTime, 2) + ':' + _pad(0, 2);
+            $rootScope.humanTime = _pad(pomodorTime, 2) + ':' + _pad(0, 2);
             _runPomodoro();
         };
 
@@ -49,7 +54,7 @@
             $scope.current = null;
             $scope.isActive = false;
             $scope.isBreak = false;
-            $scope.humanTime = _pad(pomodorTime, 2) + ':' + _pad(0, 2);
+            $rootScope.humanTime = _pad(pomodorTime, 2) + ':' + _pad(0, 2);
             if (angular.isDefined(timer)) {
                 console.log("stoping pomodoro");
                 $interval.cancel(timer);
@@ -60,7 +65,7 @@
         $scope.finish = function (pomodoro) {
             var audio = new Audio('audio/Ship_Bell-Mike_Koenig-1911209136.mp3');
             audio.play();
-            
+
             store.add($scope.current)
                 .then(function success() {
                     $scope.current = null;
@@ -113,7 +118,7 @@
             };
             // Clean task description
             // Execute timer
-            //            _runTimer(true);
+            _runTimer(true);
             // Set a 1s interval for the timer
             timer = $interval(function () {
                 console.log("calling timer")
@@ -125,7 +130,7 @@
         var _runTimer = function (pomodoro) {
             if ($scope.isActive && $scope.current) {
                 $scope.current.left -= 1;
-                $scope.humanizeTimeleft();
+                humanizeTimeleft();
                 if ($scope.current.left <= 0) {
                     $interval.cancel(timer);
                     $scope.finish(pomodoro);
@@ -133,13 +138,13 @@
             }
         };
 
-        $scope.humanizeTimeleft = function () {
+       var humanizeTimeleft = function () {
             var text = "";
             if ($scope.current && $scope.current.left) {
                 var minutes = Math.floor($scope.current.left / 60);
                 var seconds = $scope.current.left - minutes * 60;
                 text = _pad(minutes, 2) + ':' + _pad(seconds, 2);
-                $scope.humanTime = _pad(minutes, 2) + ':' + _pad(seconds, 2);
+                $rootScope.humanTime = _pad(minutes, 2) + ':' + _pad(seconds, 2);
             }
             return text;
         };

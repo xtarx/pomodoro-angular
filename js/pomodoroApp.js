@@ -18,8 +18,12 @@
 //TODO[X] music when ends
 //TODO [X]sync in cookie to be pressintent
 //TODO [X]integrate TO-Do
+//TODO Fix in-active tab progress
+//TODO save pomodor progress to cookie and make it pressistent even if tab closed
+//TODO user authentication
+//TODO view all past progress by days (pomodors spent, tasks done)
 //TODO change global settings (pomodor duration and break intervals)
 //TODO Add watch instead of listenr
 //TODO FAQ
 //TODO change background when close to finishing
-//TODO change tab text
+//TODO[X] change tab title text

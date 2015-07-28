@@ -3,7 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AngularJS Pomodoro App</title>
+    <title>{{humanTime}} | ng-pomodoro </title>
 
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/pomodoro.css">
@@ -16,7 +16,7 @@
 
 
         <div class="col-sm-4">
-            <section ng-controller="pomodoroCtrl" class="text-center col-xs-12 form-inline">
+            <section  class="text-center col-xs-12 form-inline" ng-controller="pomodoroCtrl" ng-keypress="myFunct($event)">
 
 
 
@@ -82,5 +82,4 @@
 <script src="js/controller.js"></script>
 <script src="js/todo.js"></script>
 <script src="js/filters.js"></script>
-
 </html>
