@@ -18,17 +18,13 @@
         $scope.current = null;
         $scope.tasks = store.tasks;
         $scope.pomodoroCounter = 0;
-        //        $rootScope.humanTime = "25:00";
-        $rootScope.humanTime = "25:00";
+        $rootScope.humanTime = ("0" + pomodorTime).slice(-2) + ":00";
 
 
         $scope.myFunct = function(keyEvent) {
-//            if (keyEvent.which === 13)
-                alert('I am an alert');
+//          if (keyEvent.which === 13)
+            alert('I am an alert');
         }
-
-
-
 
         $scope.getNumber = function (num) {
             return new Array(num);
@@ -58,7 +54,8 @@
             if (angular.isDefined(timer)) {
                 console.log("stoping pomodoro");
                 $interval.cancel(timer);
-
+                // Circular loader
+                $('#timer-circle').circleProgress({ value: 1, fill: { gradient: ["#FF512F", "#DD2476"] }});
             }
         };
 
@@ -69,7 +66,6 @@
             store.add($scope.current)
                 .then(function success() {
                     $scope.current = null;
-
                     if (pomodoro) {
                         console.log("pomodoro just finished starting break");
                         $scope.pomodoroCounter++;
@@ -77,22 +73,15 @@
                         if ($scope.pomodoroCounter % 5 == 0) {
                             longBreak = true;
                         }
-
                         _runBreak(longBreak);
-
                     } else {
-                        console.log("break  just finished starting pomodoro");
+                        console.log("break just finished starting pomodoro");
                         _runPomodoro();
                     }
-
-
                 });
         };
 
-
-
         var _runBreak = function (longBreak) {
-
             var breakDuration = shortBreakTime * 60;
             if (longBreak) {
                 breakDuration = longBreakTime * 60;
@@ -101,13 +90,19 @@
             $scope.current = {
                 left: breakDuration
             };
+
             $scope.isActive = true;
             $scope.isBreak = true;
             // Execute timer
             _runTimer(false);
+            // Circular loader
+            $('#timer-circle').circleProgress({ value: 1, fill: { gradient: ["#348F50", "#56B4D3"] }});
             // Set a 1s interval for the timer
             timer = $interval(function () {
                 _runTimer(false);
+
+                // Circular loader
+                $('#timer-circle').circleProgress('value',  $scope.current.left / breakDuration); 
             }, 1000);
         };
 
@@ -123,6 +118,9 @@
             timer = $interval(function () {
                 console.log("calling timer")
                 _runTimer(true);
+
+                // Circular loader
+                $('#timer-circle').circleProgress('value',  $scope.current.left / (pomodorTime * 60)); 
             }, 1000);
 
         };
@@ -148,6 +146,7 @@
             }
             return text;
         };
+
         var _pad = function (num, size) {
             var s = num + "";
             while (s.length < size) s = "0" + s;

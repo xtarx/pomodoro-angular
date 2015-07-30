@@ -1,65 +1,256 @@
+
+/*Main color:  #EC3948; */
+
+/* ==========================================================================
+   MAIL app styles
+   ========================================================================== */
 body {
-    font-size: 20px!important;
-    padding: 6rem;
-    color: #444;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+    padding: 0;
+    color: #50525F;
+    background: #F9F9F9;
 }
+
 h1 {
     font-size: 84px;
+    font-weight: lighter;
 }
+
 h2 {
     color: #888;
+    font-weight: lighter;
 }
+
 .mt1 {
     margin-top: 1rem;
 }
+
 .mt2 {
     margin-top: 2rem;
 }
+
 .mt3 {
     margin-top: 3rem;
 }
+
 .mb1 {
     margin-bottom: 1rem;
 }
+
 .mb2 {
     margin-bottom: 2rem;
 }
+
 .mb3 {
     margin-bottom: 3rem;
 }
+
 .break {
     color: #27ae60;
 }
 
-.pomodoroCounter{
-    color: #e74c3c;
-
+.main-color {
+    color: #EC3948;
 }
-.pomodoroCounter span{
-    padding: 0 1px;
 
+.red {
+    color: #EC3948;
 }
-/*todolist */
+
+::selection {
+    background: #EC3948;
+    color: #fff;
+}
+
+input[type=checkbox].css-checkbox {
+    position:absolute;
+    z-index:-1000;
+    left:-1000px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height:1px;
+    width:1px;
+    margin:-1px;
+    padding:0;
+    border:0;
+}
+
+input[type=checkbox].css-checkbox + label.css-label {
+    padding-left:29px;
+    height:24px; 
+    display:inline-block;
+    line-height:24px;
+    background-repeat:no-repeat;
+    background-position: 0 0;
+    font-size:24px;
+    vertical-align:middle;
+    cursor:pointer;
+}
+
+input[type=checkbox].css-checkbox:checked + label.css-label {
+    background-position: 0 -24px;
+}
+
+label.css-label {
+    background-image:url(checkbox.png);
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.btn-lg {
+    font-weight: 300;
+    border-radius: 4px;
+    transition: all 0.15s ease-in;
+    -webkit-transition: all 0.15s ease-in;
+}
+
+.btn:focus,
+.btn:active {
+    outline: none!important;
+    box-shadow: none!important;
+}
+
+.btn-default {
+    border-color: #CECECE;
+}
+
+.btn-default:hover,
+.btn-default:focus,
+.btn-default:active {
+    background: inherit;
+    border-color: #9A9A9A;
+}
+
+.btn-danger {
+    background-color: #EC3948;
+    border-color: #EC3948;
+}
+
+.btn-danger:hover,
+.btn-danger:focus,
+.btn-danger:active {
+    background: #E73260;
+    border-color: #E73260;
+}
+
+.action-btn {
+    margin: 4px 0 0;
+    cursor: pointer;
+    transition: opacity 0.2s ease-in;
+    -webkit-transition: opacity 0.2s ease-in;
+}
+
+.action-btn:hover, .action-btn:active {
+    opacity: 0.5;
+}
+
+/* ==========================================================================
+   TIMER styles
+   ========================================================================== */
+.timer-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 430px;
+    height: 100%;
+    border-right: 1px solid #eee;
+    background: #fff;
+}
+
+.pomodoro-timer {
+    /*height: 320px;*/
+    /*position: relative;*/
+    /*top: 50%;*/
+    /*transform: translateY(-50%);*/
+    margin-top: 130px;
+}
+
+.timer-text {
+    margin-top: -204px;
+    margin-bottom: 110px;
+}
+
+.timer-actions .btn span {
+    padding-right: 6px;
+}
 
 
-#addTodo input{
+/* ==========================================================================
+   TASKS styles
+   ========================================================================== */
+.tasks-container {
+    margin-left: 430px;
+    background: #fff;
+}
+
+.tasks-container .header {
+    padding: 15px 15px;
+}
+
+.tasks-container .header .action-btn {
+    font-size: 30px;
+    color: #aaa;
+}
+
+.tasks-container input.add-input {
     width: 100%;
+    padding: 20px 12px;
+    border: none;
+    box-shadow: none;
+    outline: 0;
+    color: #fff;
+    background: -webkit-linear-gradient(90deg, #EB3349 10%, #F45C43 90%);
+    background:    -moz-linear-gradient(90deg, #EB3349 10%, #F45C43 90%);
+    background:     -ms-linear-gradient(90deg, #EB3349 10%, #F45C43 90%);
+    background:      -o-linear-gradient(90deg, #EB3349 10%, #F45C43 90%);
+    background:         linear-gradient(90deg, #EB3349 10%, #F45C43 90%);  
 }
 
-.red{
-    color: #e74c3c;
+input.add-input::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.7);
 }
 
-/*
-input[type="checkbox"]{
-    margin-right: 15px;
-}
-*/
-
-#todoSection .list-group-item{
-    padding: 12px;
+input.add-input:-moz-placeholder {
+    color: rgba(255, 255, 255, 0.6);
 }
 
-.todo-item {
-    padding-left: 12px;
+input.add-input::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+input.add-input:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.tasks-container .list-group-item {
+    padding: 22px 12px;
+    border-radius: 0;
+    border-left: 0;
+}
+
+span.line-wrap {
+    position:relative;
+    display:inline-block;
+}
+
+span.line {
+    display:inline-block;
+    position:absolute;
+    left:0;
+    top:50%;
+    width:0;
+    border-top:1px solid grey;
+    transition: width 0.4s ease-in;
+    -webkit-transition: width 0.4s ease-in;
+}
+
+span.line-wrap.marked span.line,
+input.css-checkbox[type=checkbox]:checked + label + span.line-wrap span.line {
+    width:100%;    
 }
