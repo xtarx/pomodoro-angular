@@ -1,6 +1,7 @@
 <!doctype html>
 <html ng-app="pomodoroApp">
 
+
 <head>
 
 
@@ -44,11 +45,10 @@
             <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
         </div>
     </div>
-    //NAVIGATION
-    //NAVIGATION
-    
+    //NAVIGATION //NAVIGATION
+
     <div class="container-fluid">
-    <div ng-view></div>
+        <div ng-view></div>
     </div>
 </body>
 
@@ -83,6 +83,5 @@
 <script src="logout/logout.controller.js"></script>
 <script src="register/register.controller.js"></script>
 <!--AUTHENTICATION SCRIPTS-->
-
 
 </html>

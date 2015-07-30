@@ -19,11 +19,13 @@
         $scope.current = null;
         $scope.tasks = store.tasks;
         $scope.pomodoroCounter = 0;
+
         $rootScope.humanTime = "25:00";
         init();
         var isLoggedIn = AuthenticationService.isLoggedIn();
         $rootScope.isLoggedIn=isLoggedIn;
         console.log("isLoggedIn " + isLoggedIn);
+
 
         //if logged in then
         //store) tasks, pomodoros include date
@@ -66,6 +68,7 @@
                     var timeLeft = res.duration - (currentTime - res.startTime);
                     _resumeTimer(timeLeft, res.isPomodoro);
 
+
                 } else {
                     console.log(" no it alread passed");
                 }
@@ -92,6 +95,7 @@
             _executeTimer(isPomodoro)
 
         }
+
 
         $scope.getNumber = function (num) {
             return new Array(num);
@@ -150,13 +154,18 @@
             if (angular.isDefined(timer)) {
                 console.log("stoping pomodoro");
                 $interval.cancel(timer);
+
+                // Circular loader
+//                $('#timer-circle').circleProgress({ value: 1, fill: { gradient: ["#FF512F", "#DD2476"] }});
+
+            
             }
         };
 
 
         /**
          * increment the # of pomodors perfomred by the logged in user
-         */
+         * /
         function logged_addPomodoro() {
             PomodoroService.Create()
                 .then(function () {
@@ -187,7 +196,6 @@
             store.add($scope.current)
                 .then(function success() {
                     $scope.current = null;
-
                     if (pomodoro) {
                         console.log("pomodoro just finished starting break");
                         $scope.pomodoroCounter++;
@@ -199,18 +207,13 @@
                         if ($scope.pomodoroCounter % 5 == 0) {
                             longBreak = true;
                         }
-
                         _runBreak(longBreak);
-
                     } else {
-                        console.log("break  just finished starting pomodoro");
+                        console.log("break just finished starting pomodoro");
                         _runPomodoro();
                     }
-
-
                 });
         };
-
 
 
 
@@ -227,6 +230,7 @@
         }
 
         function _runBreak(longBreak) {
+
             var breakDuration = shortBreakTime * 60;
             if (longBreak) {
                 breakDuration = longBreakTime * 60;
@@ -247,6 +251,7 @@
             $scope.isBreak = true;
             // Execute timer
             _executeTimer(false)
+
         };
 
         function _runPomodoro() {
@@ -265,7 +270,9 @@
 
             // Clean task description
             // Execute timer
+
             _executeTimer(true)
+
 
         };
 
@@ -292,7 +299,9 @@
             return text;
         };
 
+
         function _pad(num, size) {
+
             var s = num + "";
             while (s.length < size) s = "0" + s;
             return s;
