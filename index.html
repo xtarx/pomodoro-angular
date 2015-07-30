@@ -1,10 +1,7 @@
 <!doctype html>
 <html ng-app="pomodoroApp">
 
-
 <head>
-
-
     <meta charset="utf-8">
     <title ng-bind="humanTime"> | ng-pomodoro </title>
     <base href="">
@@ -20,6 +17,8 @@
     <link rel="stylesheet" type="text/css" href="css/linearicons.css">
     <link rel="stylesheet" type="text/css" href="css/pomodoro.css">
 </head>
+
+
 
 <!--OLD BODY BEFORE KARIM CHANGES-->
 <!--
@@ -40,6 +39,29 @@
 <!--    NEW BODY START-->
 
 <body>
+<!--   NAVBAR START-->
+    <div class="header">
+        <div class="dropdown pull-right" ng-switch='isLoggedIn'>
+            <span class="action-btn lnr lnr-menu-circle dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown"></span>
+
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-switch-when='true'>
+
+                <li><a href="#/faq">FAQ</a></li>
+                <li><a href="#/logout">Sign out</a></li>
+
+            </ul>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-switch-when='false'>
+
+                <li><a href="#/login">Log in</a></li>
+                <li><a href="#/faq">FAQ</a></li>
+
+            </ul>
+        </div>
+
+    </div>
+<!--   NAVBAR END-->
+   
     <div class="container">
         <div class="col-sm-8 col-sm-offset-2">
             <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
@@ -53,6 +75,7 @@
 </body>
 
 <!--    NEW BODY END-->
+
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="js/vendor/dropdown.min.js"></script>
 <script src="js/vendor/circle-progress.js"></script>
@@ -68,17 +91,14 @@
 <script src="js/todo.js"></script>
 <script src="js/filters.js"></script>
 
-<!--AUTHENTICATION SCRIPTS-->
-<script src="app-services/authentication.service.js"></script>
-<script src="app-services/flash.service.js"></script>
-<!--<script src="app-services/user.service.local-storage.js"></script>-->
 <!-- Real user service that uses an api -->
 <script src="app-services/user.service.js"></script>
 <script src="app-services/todo.service.js"></script>
 <script src="app-services/pomodoro.service.js"></script>
 <script src="app-services/store.service.local-storage.js"></script>
-
-<script src="home/home.controller.js"></script>
+<!--AUTHENTICATION SCRIPTS-->
+<script src="app-services/authentication.service.js"></script>
+<script src="app-services/flash.service.js"></script>
 <script src="login/login.controller.js"></script>
 <script src="logout/logout.controller.js"></script>
 <script src="register/register.controller.js"></script>

@@ -33,26 +33,7 @@
 
 <div class="tasks-container">
 
-    <div class="header">
-        <div class="dropdown pull-right" ng-switch='isLoggedIn'>
-            <span class="action-btn lnr lnr-menu-circle dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown"></span>
 
-
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-switch-when='true'>
-
-                <li><a href="#/faq">FAQ</a></li>
-                <li><a href="#/logout">Sign out</a></li>
-
-            </ul>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-switch-when='false'>
-
-                <li><a href="#/login">Log in</a></li>
-                <li><a href="#/faq">FAQ</a></li>
-
-            </ul>
-        </div>
-
-    </div>
     <!--TODOS SECTION START-->
     <div ng-controller="TodoCtrl">
         <h2 class="main-color mt3">YOU'VE GOT <span class="emphasis">{{(todos | filter:{done:0}).length}}</span> THINGS TO DO</h2>

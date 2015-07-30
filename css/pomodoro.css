@@ -192,11 +192,14 @@ TASKS styles
     background: #fff;
 }
 
-.tasks-container .header {
-    padding: 15px 15px;
+.header {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+/*    padding: 15px 15px;*/
 }
 
-.tasks-container .header .action-btn {
+.header .action-btn {
     font-size: 30px;
     color: #aaa;
 }

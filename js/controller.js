@@ -277,7 +277,7 @@
         };
 
         function _runTimer(pomodoro) {
-            console.log(" $scope.isActive " + $scope.isActive);
+//            console.log(" $scope.isActive " + $scope.isActive);
             if ($scope.isActive && $scope.current) {
                 $scope.current.left -= 1;
                 humanizeTimeleft();
