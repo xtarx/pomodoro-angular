@@ -3,11 +3,11 @@
 
     angular
         .module('pomodoroApp')
-        .factory('localStorage', UserService);
+        .factory('localStorage', TaskService);
 
-    UserService.$inject = ['$timeout', '$filter', '$q'];
+    TaskService.$inject = ['$timeout', '$filter', '$q'];
 
-    function UserService($timeout, $filter, $q) {
+    function TaskService($timeout, $filter, $q) {
 
         var service = {};
         var STORAGE_ID = 'todos';
@@ -72,20 +72,11 @@
 
         function Update(task) {
             var deferred = $q.defer();
-            console.log(task.id);
-            console.log(task.done);
-            console.log(task.text);
-            console.log(task.$$hashKey);
             delete task.$$hashKey;
-            console.log(task.id);
-            console.log(task.done);
-            console.log(task.text);
-            console.log(task.$$hashKey);
             var tasks = getTasks();
             for (var i = 0; i < tasks.length; i++) {
                 if (tasks[i].id === task.id) {
                     tasks[i] = task;
-                    //                    console.log("you found me ")
                     break;
                 }
             }
@@ -98,15 +89,16 @@
         function Delete(id) {
             var deferred = $q.defer();
 
-            var users = getTasks();
-            for (var i = 0; i < users.length; i++) {
-                var user = users[i];
-                if (user.id === id) {
-                    users.splice(i, 1);
+            console.log("DELETE CALLED WITH Id "+id)
+            var tasks = getTasks();
+            for (var i = 0; i < tasks.length; i++) {
+                var task = tasks[i];
+                if (task.id === id) {
+                    tasks.splice(i, 1);
                     break;
                 }
             }
-            setTasks(users);
+            setTasks(tasks);
             deferred.resolve();
 
             return deferred.promise;
@@ -152,7 +144,7 @@
             if (!localStorage.todos) {
                 localStorage.todos = JSON.stringify([]);
             }
-            console.log("get task just called")
+//            console.log("get task just called")
             return JSON.parse(localStorage.todos);
         }
 

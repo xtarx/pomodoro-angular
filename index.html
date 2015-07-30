@@ -39,37 +39,37 @@
 <!--    NEW BODY START-->
 
 <body>
-<!--   NAVBAR START-->
+    <!--   NAVBAR START-->
     <div class="header">
         <div class="dropdown pull-right" ng-switch='isLoggedIn'>
             <span class="action-btn lnr lnr-menu-circle dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown"></span>
 
-
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-switch-when='true'>
-
                 <li><a href="#/faq">FAQ</a></li>
                 <li><a href="#/logout">Sign out</a></li>
-
             </ul>
             <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-switch-when='false'>
 
                 <li><a href="#/login">Log in</a></li>
                 <li><a href="#/faq">FAQ</a></li>
-
             </ul>
         </div>
-
     </div>
-<!--   NAVBAR END-->
-   
+    <!--   NAVBAR END-->
+
+<!--
     <div class="container">
+        
+    </div>
+-->
+<!--    //NAVIGATION //NAVIGATION-->
+
+    <div class="container-fluid">
+       
         <div class="col-sm-8 col-sm-offset-2">
             <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
         </div>
-    </div>
-    //NAVIGATION //NAVIGATION
-
-    <div class="container-fluid">
+        
         <div ng-view></div>
     </div>
 </body>

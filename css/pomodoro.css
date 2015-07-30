@@ -190,6 +190,7 @@ TASKS styles
 .tasks-container {
     margin-left: 430px;
     background: #fff;
+    padding-top: 10px;
 }
 
 .header {

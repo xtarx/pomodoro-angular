@@ -23,7 +23,7 @@
         $rootScope.humanTime = "25:00";
         init();
         var isLoggedIn = AuthenticationService.isLoggedIn();
-        $rootScope.isLoggedIn=isLoggedIn;
+        $rootScope.isLoggedIn = isLoggedIn;
         console.log("isLoggedIn " + isLoggedIn);
 
 
@@ -49,7 +49,7 @@
                 //                p$scope.initialRun = true;
                 console.warn("        INIT HAVE BEEN in PAUSE STATE")
                 $scope.initialRun = false;
-//                $rootScope.humanTime = "22:00";
+                //                $rootScope.humanTime = "22:00";
                 $scope.current = {
                     left: pauseState.timeLeft
                 };
@@ -156,22 +156,20 @@
                 $interval.cancel(timer);
 
                 // Circular loader
-//                $('#timer-circle').circleProgress({ value: 1, fill: { gradient: ["#FF512F", "#DD2476"] }});
+                //                $('#timer-circle').circleProgress({ value: 1, fill: { gradient: ["#FF512F", "#DD2476"] }});
 
-            
+
             }
         };
 
 
         /**
          * increment the # of pomodors perfomred by the logged in user
-         * /
+         */
         function logged_addPomodoro() {
             PomodoroService.Create()
                 .then(function () {
-
                     console.log('API - pomodor count updated successful');
-
                 });
         }
 
@@ -182,7 +180,7 @@
             PomodoroService.GetTodaysCount()
                 .then(function (data) {
                     $scope.pomodoroCounter = parseInt(data);
-                    $scope.pomodoroCounter = 25;
+//                    $scope.pomodoroCounter = 25;
                     console.log('API - pomodor count is ' + data);
 
                 });
@@ -277,7 +275,7 @@
         };
 
         function _runTimer(pomodoro) {
-//            console.log(" $scope.isActive " + $scope.isActive);
+            //            console.log(" $scope.isActive " + $scope.isActive);
             if ($scope.isActive && $scope.current) {
                 $scope.current.left -= 1;
                 humanizeTimeleft();

@@ -5,9 +5,9 @@
         .module('pomodoroApp')
         .factory('AuthenticationService', AuthenticationService);
 
-    AuthenticationService.$inject = ['$http', '$cookieStore', '$rootScope', '$timeout', 'UserService','localStorage'];
+    AuthenticationService.$inject = ['$http', '$cookieStore', '$rootScope', '$timeout', 'UserService', 'localStorage'];
 
-    function AuthenticationService($http, $cookieStore, $rootScope, $timeout, UserService,store) {
+    function AuthenticationService($http, $cookieStore, $rootScope, $timeout, UserService, store) {
         var service = {};
 
         service.Login = Login;
@@ -18,37 +18,13 @@
         return service;
 
         function Login(email, password, callback) {
-
-            /* Dummy authentication for testing, uses $timeout to simulate api call
-             ----------------------------------------------*/
-//            $timeout(function () {
-//                var response;
-//                UserService.GetByEmail(email)
-//                    .then(function (user) {
-//                        if (user !== null && user.password === password) {
-//                            response = {
-//                                success: true
-//                            };
-//                        } else {
-//                            response = {
-//                                success: false,
-//                                message: 'email or password is incorrect'
-//                            };
-//                        }
-//                        callback(response);
-//                    });
-//            }, 1000);
-
-            /* Use this for real authentication
-             ----------------------------------------------*/
             $http.post('api/users/authenticate', {
-               email: email,
-               password: password
-           })
-           .success(function (response) {
-               callback(response);
-           });
-
+                    email: email,
+                    password: password
+                })
+                .success(function (response) {
+                    callback(response);
+                });
         }
 
         function SetCredentials(email, password) {
@@ -71,8 +47,8 @@
             //empty localstorage too
             store.removeAll();
             $http.defaults.headers.common.Authorization = 'Basic ';
-        }   
-        
+        }
+
         function isLoggedIn() {
             return !!$cookieStore.get("globals");
 

@@ -16,13 +16,16 @@
             logged_loadAllTasks();
         } else {
             //if non-logged users then get tasks from localstorage
-            
             $scope.todos = store.tasks();
         }
         $scope.getTotalTodos = function () {
             return store.tasks.length;
         };
 
+
+
+
+        // START OF LOGGEDIN USER FUNCTIONS
 
         function logged_loadAllTasks() {
             TodoService.GetTasksByUser()
@@ -46,31 +49,6 @@
                 });
         }
 
-        $scope.addTodo = function () {
-
-            if (isLoggedIn) {
-                logged_addTodotoUser({
-                    text: $scope.formTodoText,
-                    done: 0
-                });
-            } else {
-                store.add({
-                        text: $scope.formTodoText,
-                        done: 0
-                    })
-                    .then(function success() {
-
-                    $scope.todos.push({
-                        text: $scope.formTodoText,
-                        done: 0
-                    });
-                        $scope.todosCount++;
-                        $scope.formTodoText = '';
-                        console.log("added to localstorage");
-                    });
-            }
-
-        };
         /**
          * adds the todo task to user's tasks API
          */
@@ -96,50 +74,12 @@
                 .then(function (response) {
                     if (response.success) {
                         console.log('Task deleted successful');
-                        $scope.todos.pop(todo);
-                        $scope.formTodoText = '';
-                        $scope.todosCount--;
+                        logged_loadAllTasks();
                     } else {
                         console.log('Task failed to delete');
                     }
                 });
         }
-
-        $scope.archive = function (todo) {
-
-            if (isLoggedIn) {
-                logged_deleteTodofromUser(todo);
-
-            } else {
-
-                todo.done = 1;
-                var oldTodos = $scope.todos;
-                $scope.todos = [];
-                angular.forEach(oldTodos, function (todo) {
-                    if (!todo.done) {
-                        $scope.todos.push(todo);
-                    }
-                });
-                store.set($scope.todos);
-            }
-        };
-
-        /**
-         * Toggles the state of the task in both cases
-         * whether user is logged in then change in Database else change in localStorage
-         * @param {Object} todo task object
-         */
-        $scope.markDone = function (todo) {
-
-            if (isLoggedIn) {
-                logged_markDone(todo);
-
-            } else {
-                todo.done = (todo.done===0)?1:0;
-                store.Update(todo);
-            }
-        };
-
 
         function logged_markDone(todo) {
             TodoService.MarkDone(todo.id)
@@ -149,12 +89,71 @@
                 });
         };
 
-        $scope.clearCompleted = function () {
-            $scope.archive();
+        // END OF LOGGEDIN USER FUNCTIONS
+
+
+
+//        START OF TASK FUNCTIONS
+        
+
+        $scope.addTodo = function () {
+
+            if (isLoggedIn) {
+                logged_addTodotoUser({
+                    text: $scope.formTodoText,
+                    done: 0
+                });
+            } else {
+                store.add({
+                    text: $scope.formTodoText,
+                    done: 0
+                })
+                    .then(function success() {
+
+                    $scope.todos.push({
+                        text: $scope.formTodoText,
+                        done: 0
+                    });
+                    $scope.todosCount++;
+                    $scope.formTodoText = '';
+                    console.log("added to localstorage");
+                });
+            }
+
         };
 
+        
+        $scope.archive = function (todo) {
+
+            if (isLoggedIn) {
+                logged_deleteTodofromUser(todo);
+            } else {
+
+                store.Delete(todo.id)
+                    .then(function () {
+                        $scope.todos = store.tasks();
+                    });
 
 
+            }
+        };
+
+        /**
+         * Toggles the state of the task in both cases
+         * whether user is logged in then change in Database else change in localStorage
+         * @param {Object} todo task object
+         */
+        $scope.markDone = function (todo) {
+            if (isLoggedIn) {
+                logged_markDone(todo);
+            } else {
+                todo.done = (todo.done === 0) ? 1 : 0;
+                store.Update(todo);
+            }
+        };
+
+        
+        //        END OF TASK FUNCTIONS
     }
 
 })();

@@ -24,13 +24,13 @@ class Users extends REST_Controller {
 
 		if ( ! $response)
 		{
-			$this->response(array('success' => true, 'message' => 'email or password is incorrect'), 200);
+			$this->response(array('success' => false, 'message' => 'email or password is incorrect'), 200);
 		}
 
 		//generate token
-		$token=$this->users_model->generate_token($response['id']);
+		// $token=$this->users_model->generate_token($response['id']);
 		
-		$this->response(array('success' => true,'token' => $token, 'message' => 'success'), 200);
+		$this->response(array('success' => true, 'message' => 'success'), 200);
 
 	}
 
