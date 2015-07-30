@@ -10,7 +10,7 @@
     function pomodoroCtrl($rootScope, $scope, $interval, store, PomodoroService, AuthenticationService) {
         'use strict';
         var timer = null;
-        var pomodorTime = 0.1;
+        var pomodorTime =25;
         var shortBreakTime = 5;
         var longBreakTime = 15;
         $scope.isActive = false;
@@ -198,10 +198,7 @@
                 if ($scope.pomodoroCounter % 5 == 0) {
                     longBreak = true;
                 }
-                _runBreak(longBreak);
-            } else {
-                console.log("break just finished starting pomodoro");
-                _runPomodoro();
+              
             }
 
         };

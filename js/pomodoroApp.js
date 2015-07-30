@@ -33,9 +33,14 @@
             templateUrl: 'register/register.view.html',
             controllerAs: 'vm'
         })
+   .when('/faq', {
+            controller: 'FAQController',
+            templateUrl: 'faq/faq.view.html',
+            controllerAs: 'vm'
+        })
 
         .otherwise({
-            redirectTo: '/login'
+            redirectTo: '/'
         });
         //        $locationProvider.html5Mode(true);
     }

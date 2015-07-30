@@ -5,16 +5,21 @@
         .module('pomodoroApp')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$location', 'AuthenticationService', 'FlashService'];
+    LoginController.$inject = ['$rootScope', '$location', 'AuthenticationService', 'FlashService'];
 
-    function LoginController($location, AuthenticationService, FlashService) {
+    function LoginController($rootScope, $location, AuthenticationService, FlashService) {
         var vm = this;
 
         vm.login = login;
 
         (function initController() {
             // reset login status
-            AuthenticationService.ClearCredentials();
+            //            console.log("is logged + "+$rootScope.isLoggedIn)
+            if ($rootScope.isLoggedIn) {
+                $location.path('/');
+            } else {
+                AuthenticationService.ClearCredentials();
+            }
         })();
 
         function login() {
