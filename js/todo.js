@@ -18,11 +18,10 @@
             //if non-logged users then get tasks from localstorage
             $scope.todos = store.tasks();
         }
-        $scope.getTotalTodos = function () {
-            return store.tasks.length;
-        };
 
-
+        function loadAllTasks() {
+            $scope.todos = store.tasks();
+        }
 
 
         // START OF LOGGEDIN USER FUNCTIONS
@@ -31,12 +30,6 @@
             TodoService.GetTasksByUser()
                 .then(function (todos) {
                     $scope.todos = todos;
-                    var filtered = $filter('filter')(todos, {
-                        done: 0
-                    });
-                    $scope.todosCount = filtered.length ? filtered.length : 0;
-
-
                 });
         }
 
@@ -59,8 +52,6 @@
                         console.log('Task added successful');
                         $scope.todos.push(data);
                         $scope.formTodoText = '';
-                        $scope.todosCount++;
-
                     } else {
                         console.log('Task failed to add');
                     }
@@ -93,8 +84,8 @@
 
 
 
-//        START OF TASK FUNCTIONS
-        
+        //        START OF TASK FUNCTIONS
+
 
         $scope.addTodo = function () {
 
@@ -105,35 +96,32 @@
                 });
             } else {
                 store.add({
-                    text: $scope.formTodoText,
-                    done: 0
-                })
-                    .then(function success() {
-
-                    $scope.todos.push({
                         text: $scope.formTodoText,
                         done: 0
+                    })
+                    .then(function success() {
+                        $scope.todos.push({
+                            text: $scope.formTodoText,
+                            done: 0
+                        });
+                        $scope.formTodoText = '';
+                        loadAllTasks();
+                        console.log("added to localstorage");
                     });
-                    $scope.todosCount++;
-                    $scope.formTodoText = '';
-                    console.log("added to localstorage");
-                });
             }
 
         };
 
-        
+
         $scope.archive = function (todo) {
 
             if (isLoggedIn) {
                 logged_deleteTodofromUser(todo);
             } else {
+                store.Delete(todo.id);
 
-                store.Delete(todo.id)
-                    .then(function () {
-                        $scope.todos = store.tasks();
-                    });
-
+                $scope.todos = store.tasks();
+                loadAllTasks();
 
             }
         };
@@ -149,10 +137,11 @@
             } else {
                 todo.done = (todo.done === 0) ? 1 : 0;
                 store.Update(todo);
+                loadAllTasks();
             }
         };
 
-        
+
         //        END OF TASK FUNCTIONS
     }
 

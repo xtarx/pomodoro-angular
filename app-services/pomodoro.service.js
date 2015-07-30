@@ -17,7 +17,7 @@
         return service;
 
         function GetCountByDay(id) {
-            return $http.get('api/pomodoros/countByDay' , user).then(handleSuccess, handleError('Error getting user by id'));
+            return $http.get('api/pomodoros/countByDay', user).then(handleSuccess, handleError('Error getting user by id'));
         }
 
         function GetTodaysCount() {
@@ -34,8 +34,8 @@
         // private functions
 
         function handleSuccess(data) {
-//            console.log("handle success");
-//            console.log(data.r);
+            //            console.log("handle success");
+            //            console.log(data.r);
 
             return data.data;
         }

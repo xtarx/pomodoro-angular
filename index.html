@@ -19,23 +19,6 @@
 </head>
 
 
-
-<!--OLD BODY BEFORE KARIM CHANGES-->
-<!--
-<body class="container-fluid">
-
-    <div class="container">
-        <div class="col-sm-8 col-sm-offset-2">
-            <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
-        </div>
-    </div>
-    <div ng-view></div>
-
-
-</body>
--->
-<!--OLD BODY BEFORE KARIM CHANGES-->
-
 <!--    NEW BODY START-->
 
 <body>
@@ -53,24 +36,32 @@
                 <li><a href="#/login">Log in</a></li>
                 <li><a href="#/faq">FAQ</a></li>
             </ul>
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-switch-default>
+
+                <li><a href="#/">Home</a></li>
+                <li><a href="#/faq">FAQ</a></li>
+            </ul>
         </div>
     </div>
     <!--   NAVBAR END-->
 
-<!--
+    <!--
     <div class="container">
         
     </div>
 -->
-<!--    //NAVIGATION //NAVIGATION-->
+    <!--    //NAVIGATION //NAVIGATION-->
 
     <div class="container-fluid">
-       
+
         <div class="col-sm-8 col-sm-offset-2">
             <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
         </div>
-        
-        <div ng-view></div>
+        <div class="row">
+
+            <div ng-view></div>
+        </div>
     </div>
 </body>
 
@@ -78,12 +69,18 @@
 
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="js/vendor/dropdown.min.js"></script>
-<script src="js/vendor/circle-progress.js"></script>
+<!--<script src="js/vendor/circle-progress.js"></script>-->
 
 <script src="js/vendor/angular.min.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
+<!--    easy-pie-chart/-->
+<!--<script src="bower_components/jquery.easy-pie-chart/dist/angular.easypiechart.js"></script>-->
+<!--    roundprogress-->
+<!--<script src="bower_components/roundProgress.min.js"></script>-->
+
+
 
 <script src="js/pomodoroApp.js"></script>
 <script src="js/service.js"></script>

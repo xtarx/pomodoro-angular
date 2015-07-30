@@ -2,9 +2,9 @@
     <h2>Register</h2>
     <div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
     <form name="form" ng-submit="vm.register()" role="form">
-     
+
         <div class="form-group" type="email" ng-class="{ 'has-error': form.email.$dirty && form.email.$error.required }">
-            <label for="email">email</label>
+            <label for="email">Email</label>
             <input type="text" name="email" id="email" class="form-control" ng-model="vm.user.email" required />
             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
         </div>

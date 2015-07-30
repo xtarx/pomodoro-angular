@@ -32,9 +32,6 @@
 
         function tasks() {
             return getTasks();
-            //            var deferred = $q.defer();
-            //            deferred.resolve(getTasks());
-            //            return deferred.promise;
         }
 
         function GetById(id) {
@@ -89,7 +86,7 @@
         function Delete(id) {
             var deferred = $q.defer();
 
-            console.log("DELETE CALLED WITH Id "+id)
+            console.log("DELETE CALLED WITH Id " + id)
             var tasks = getTasks();
             for (var i = 0; i < tasks.length; i++) {
                 var task = tasks[i];
@@ -144,7 +141,7 @@
             if (!localStorage.todos) {
                 localStorage.todos = JSON.stringify([]);
             }
-//            console.log("get task just called")
+            //            console.log("get task just called")
             return JSON.parse(localStorage.todos);
         }
 
