@@ -1,0 +1,95 @@
+<!--TIMER SECTION START-->
+<div class="timer-container text-center">
+    <div class="pomodoro-timer">
+        <div id="timer-circle"></div>
+        <!--Pomodor timer-->
+        <div class="timer-text" ng-cloak>
+            <h1 ng-class="{ 'break': isBreak }">{{humanTime}}</h1>
+          
+            <h2 class="mb3">{{current.txt}}</h2>
+        </div>
+        <!--POMODORO COUNTER START-->
+        <div class="pomodoroCounter main-color">
+            <span class="glyphicon glyphicon-record" ng-repeat="i in getNumber(pomodoroCounter)  track by $index"></span>
+        </div>
+        <!--POMODORO COUNTER END-->
+        <div class="timer-actions">
+            <button ng-click="start()" ng-show="initialRun" class="btn btn-default btn-lg">
+                <span class="glyphicon glyphicon-play main-color" aria-hidden="true"></span> START
+            </button>
+            <button class="btn btn-default btn-lg" ng-show="isActive" ng-click="pause()">
+                <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> PAUSE
+            </button>
+            <button class="btn btn-default btn-lg" ng-hide="isActive||initialRun" ng-click="resume()">
+                <span class="glyphicon glyphicon-play" aria-hidden="true"></span> RESUME
+            </button>
+            <button class="btn btn-danger btn-lg" ng-hide="initialRun" ng-click="stop()">
+                <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> STOP
+            </button>
+        </div>
+    </div>
+</div>
+<!--TIMER SECTION END-->
+
+<div class="tasks-container">
+
+    <div class="header">
+        <div class="dropdown pull-right" ng-switch='isLoggedIn'>
+            <span class="action-btn lnr lnr-menu-circle dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown"></span>
+
+
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-switch-when='true'>
+
+                <li><a href="#/faq">FAQ</a></li>
+                <li><a href="#/logout">Sign out</a></li>
+
+            </ul>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenu1" ng-switch-when='false'>
+
+                <li><a href="#/login">Log in</a></li>
+                <li><a href="#/faq">FAQ</a></li>
+
+            </ul>
+        </div>
+
+    </div>
+    <!--TODOS SECTION START-->
+    <div ng-controller="TodoCtrl">
+        <h2 class="main-color mt3">YOU'VE GOT <span class="emphasis">{{(todos | filter:{done:0}).length}}</span> THINGS TO DO</h2>
+        <!--        <h2 class="main-color mt3">YOU'VE GOT <span class="emphasis">{{todos.length}}</span> THINGS TO DO</h2>-->
+        <div class="todo-wrapper">
+            <form id="addTodo" name="t" ng-submit="addTodo()">
+                <input required class="add-input" placeholder="I NEED TO..." type="text" ng-model="formTodoText" ng-model-instant />
+            </form>
+            <ul class="list-group">
+                <!--                <li class="list-group-item" ng-repeat="todo in todos |orderBy:$index:true track by $index | orderBy:'done' ">-->
+                <li class="list-group-item" ng-repeat="todo in todos | orderBy:'done' ">
+                    <input type="checkbox" ng-checked="todo.done==1" class="css-checkbox" id="{{$index}}" ng-click="markDone(todo)" />
+                    <label for="{{$index}}" class="css-label"></label>
+                    <span class="todo-item done-{{todo.done}} line-wrap"><span class='line'></span>{{todo.text}}</span>
+                    <span class="action-btn lnr lnr-cross red pull-right" aria-hidden="true" ng-click="archive(todo)"></span>
+                </li>
+            </ul>
+
+        </div>
+        <!--TODOS SECTION END-->
+
+    </div>
+
+</div>
+
+<!--JQUERY CICRLE SCRITPTS-->
+<script>
+    $('#timer-circle').circleProgress({
+        value: 1,
+        size: 260,
+        startAngle: -Math.PI / 2,
+        reverse: true,
+        thickness: 3,
+        fill: {
+            gradient: ["#FF512F", "#DD2476"]
+        }
+    });
+
+</script>
+<!--JQUERY CICRLE SCRITPTS-->

@@ -2,84 +2,87 @@
 <html ng-app="pomodoroApp">
 
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{humanTime}} | ng-pomodoro </title>
 
+
+    <meta charset="utf-8">
+    <title ng-bind="humanTime"> | ng-pomodoro </title>
+    <base href="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="pomodoro task manager">
+    <meta name="author" content="XtarX">
+    <link rel="shortcut icon" href="favicon_16.ico" />
+    <link rel="bookmark" href="favicon_16.ico" />
+
+    <!-- site css -->
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="css/linearicons.css">
     <link rel="stylesheet" type="text/css" href="css/pomodoro.css">
 </head>
 
+<!--OLD BODY BEFORE KARIM CHANGES-->
+<!--
 <body class="container-fluid">
 
-
-    <div class="row">
-
-
-        <div class="col-sm-4">
-            <section  class="text-center col-xs-12 form-inline" ng-controller="pomodoroCtrl" ng-keypress="myFunct($event)">
-
-
-
-                <!--Pomodor timer-->
-
-                <div ng-cloak>
-
-
-                    <h1 ng-class="{ 'break': isBreak }">{{humanTime}}</h1>
-                    <div class="pomodoroCounter">
-
-                        <span class="glyphicon glyphicon-record" ng-repeat="i in getNumber(pomodoroCounter)  track by $index"></span>
-                    </div>
-                    <h2 class="mb3">{{current.txt}}</h2>
-                    <button ng-click="start()" ng-show="initialRun" class="btn btn-default">
-                        <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Start</button>
-
-                    <button class="btn btn-default" ng-show="isActive" ng-click="pause()">
-                        <span class="glyphicon glyphicon-pause" aria-hidden="true"></span> Pause</button>
-
-                    <button class="btn btn-info" ng-hide="isActive||initialRun" ng-click="resume()">
-                        <span class="glyphicon glyphicon-play" aria-hidden="true"></span> Resume</button>
-                    <button class="btn btn-danger" ng-hide="initialRun" ng-click="stop()">
-                        <span class="glyphicon glyphicon-stop" aria-hidden="true"></span> Stop</button>
-
-
-                </div>
-                <!--Pomodor timer-->
-
-                <!--to-do list-->
-
-            </section>
-        </div>
-        <div class="col-sm-8">
-            <section id='todoSection'>
-                <div class="todo-wrapper" ng-controller="TodoCtrl">
-                    <h2 class="red">YOU'VE GOT <span class="emphasis">{{todos.length}}</span> THINGS TO DO</h2>
-                    <form id="addTodo" name="t" ng-submit="addTodo()">
-                        <input required class=" add-input" placeholder="I need to..." type="text" ng-model="formTodoText" ng-model-instant />
-
-                    </form>
-                    <ul class="list-group">
-                        <li class="list-group-item" ng-repeat="todo in todos |orderBy:$index:true track by $index ">
-
-                            <span class="todo-item done-{{todo.done}}">{{todo.text}}</span>
-                            <span class="glyphicon glyphicon-remove pull-right red" aria-hidden="true" ng-click="archive(todo)"></span>
-                        </li>
-                    </ul>
-
-
-                    <!--                    <button class="clear-btn" ng-click="clearCompleted()">Clear completed</button>-->
-                </div>
-                <!--to-do list-->
-
-            </section>
+    <div class="container">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
         </div>
     </div>
+    <div ng-view></div>
+
 
 </body>
+-->
+<!--OLD BODY BEFORE KARIM CHANGES-->
+
+<!--    NEW BODY START-->
+
+<body>
+    <div class="container">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div ng-class="{ 'alert': flash, 'alert-success': flash.type === 'success', 'alert-danger': flash.type === 'error' }" ng-if="flash" ng-bind="flash.message"></div>
+        </div>
+    </div>
+    //NAVIGATION
+    //NAVIGATION
+    
+    <div class="container-fluid">
+    <div ng-view></div>
+    </div>
+</body>
+
+<!--    NEW BODY END-->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="js/vendor/dropdown.min.js"></script>
+<script src="js/vendor/circle-progress.js"></script>
+
 <script src="js/vendor/angular.min.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+
 <script src="js/pomodoroApp.js"></script>
 <script src="js/service.js"></script>
 <script src="js/controller.js"></script>
 <script src="js/todo.js"></script>
 <script src="js/filters.js"></script>
+
+<!--AUTHENTICATION SCRIPTS-->
+<script src="app-services/authentication.service.js"></script>
+<script src="app-services/flash.service.js"></script>
+<!--<script src="app-services/user.service.local-storage.js"></script>-->
+<!-- Real user service that uses an api -->
+<script src="app-services/user.service.js"></script>
+<script src="app-services/todo.service.js"></script>
+<script src="app-services/pomodoro.service.js"></script>
+<script src="app-services/store.service.local-storage.js"></script>
+
+<script src="home/home.controller.js"></script>
+<script src="login/login.controller.js"></script>
+<script src="logout/logout.controller.js"></script>
+<script src="register/register.controller.js"></script>
+<!--AUTHENTICATION SCRIPTS-->
+
+
 </html>

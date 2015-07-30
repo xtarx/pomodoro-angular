@@ -4,3 +4,8 @@ angular.module('pomodoroApp')
             return "HA";
         };
     })
+    .filter('CountCase', function () {
+        return function (input) {
+            return "HA";
+        };
+    })
