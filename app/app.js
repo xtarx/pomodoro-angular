@@ -11,33 +11,32 @@
         $routeProvider
             .when('/', {
                 controller: 'pomodoroCtrl',
-                templateUrl: 'views/pomodoro_plust_todo.html'
-                    //                controller: 'HomeController',
-                    //                templateUrl: 'home/home.view.html',
-                    //                controllerAs: 'vm'
+//                controllerAs: 'vm',
+                templateUrl: 'app/pomodoro/pomodoro_plust_todo.html'
+
             })
 
         .when('/login', {
-            controller: 'LoginController',
-            templateUrl: 'login/login.view.html',
-            controllerAs: 'vm'
-        })
-      .when('/logout', {
-            controller: 'LogoutController',
-            template: 'login/login.view.html',
-            controllerAs: 'vm'
-        })
+                controller: 'LoginController',
+                templateUrl: 'app/login/login.view.html',
+                controllerAs: 'vm'
+            })
+            .when('/logout', {
+                controller: 'LogoutController',
+                template: 'login/login.view.html',
+                controllerAs: 'vm'
+            })
 
         .when('/register', {
-            controller: 'RegisterController',
-            templateUrl: 'register/register.view.html',
-            controllerAs: 'vm'
-        })
-   .when('/faq', {
-            controller: 'FAQController',
-            templateUrl: 'faq/faq.view.html',
-            controllerAs: 'vm'
-        })
+                controller: 'RegisterController',
+                templateUrl: 'app/register/register.view.html',
+                controllerAs: 'vm'
+            })
+            .when('/faq', {
+                controller: 'FAQController',
+                templateUrl: 'app/faq/faq.view.html',
+                controllerAs: 'vm'
+            })
 
         .otherwise({
             redirectTo: '/'
@@ -50,7 +49,7 @@
     function run($rootScope, $location, $cookieStore, $http) {
         // keep user logged in after page refresh
 
-//        console.log('in run fun');
+        //        console.log('in run fun');
         $rootScope.globals = $cookieStore.get('globals') || {};
         if ($rootScope.globals.currentUser) {
             $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata; // jshint ignore:line
@@ -59,9 +58,9 @@
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
             // redirect to login page if not logged in and trying to access a restricted page
 
-//            console.log('in run funaa');
-//            var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
-            var restrictedPage=false;
+            //            console.log('in run funaa');
+            //            var restrictedPage = $.inArray($location.path(), ['/login', '/register']) === -1;
+            var restrictedPage = false;
             var loggedIn = $rootScope.globals.currentUser;
             if (restrictedPage && !loggedIn) {
                 $location.path('/login');

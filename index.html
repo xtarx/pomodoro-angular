@@ -13,9 +13,9 @@
 
     <!-- site css -->
     <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/linearicons.css">
-    <link rel="stylesheet" type="text/css" href="css/pomodoro.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/linearicons.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/pomodoro.css">
 </head>
 
 
@@ -68,10 +68,10 @@
 <!--    NEW BODY END-->
 
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="js/vendor/dropdown.min.js"></script>
-<!--<script src="js/vendor/circle-progress.js"></script>-->
+    <script src="assets/js/vendor/dropdown.min.js"></script>
+    <!--<script src="assets/js/vendor/circle-progress.js"></script>-->
 
-<script src="js/vendor/angular.min.js"></script>
+    <script src="assets/js/vendor/angular.min.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
 <script src="bower_components/angular-cookies/angular-cookies.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -82,24 +82,23 @@
 
 
 
-<script src="js/pomodoroApp.js"></script>
-<script src="js/service.js"></script>
-<script src="js/controller.js"></script>
-<script src="js/todo.js"></script>
-<script src="js/filters.js"></script>
+<script src="app/app.js"></script>
+<script src="app/service.js"></script>
+<script src="app/pomodoro/pomodoro.controller.js"></script>
+<script src="app/todos/todo.controller.js"></script>
 
 <!-- Real user service that uses an api -->
-<script src="app-services/user.service.js"></script>
-<script src="app-services/todo.service.js"></script>
-<script src="app-services/pomodoro.service.js"></script>
-<script src="app-services/store.service.local-storage.js"></script>
+<script src="app/app-services/user.service.js"></script>
+<script src="app/app-services/todo.service.js"></script>
+<script src="app/app-services/pomodoro.service.js"></script>
+<script src="app/app-services/store.service.local-storage.js"></script>
 <!--AUTHENTICATION SCRIPTS-->
-<script src="app-services/authentication.service.js"></script>
-<script src="app-services/flash.service.js"></script>
-<script src="login/login.controller.js"></script>
-<script src="logout/logout.controller.js"></script>
-<script src="register/register.controller.js"></script>
-<script src="faq/faq.controller.js"></script>
+<script src="app/app-services/authentication.service.js"></script>
+<script src="app/app-services/flash.service.js"></script>
+<script src="app/login/login.controller.js"></script>
+<script src="app/logout/logout.controller.js"></script>
+<script src="app/register/register.controller.js"></script>
+<script src="app/faq/faq.controller.js"></script>
 <!--AUTHENTICATION SCRIPTS-->
 
 </html>
