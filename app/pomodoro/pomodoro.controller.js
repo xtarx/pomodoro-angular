@@ -8,9 +8,9 @@
     pomodoroCtrl.$inject = ['$rootScope', '$scope', '$interval', 'localStorage', 'PomodoroService', 'AuthenticationService'];
 
     function pomodoroCtrl($rootScope, $scope, $interval, store, PomodoroService, AuthenticationService) {
-        'use strict';
+
         var timer = null;
-        var pomodorTime =25;
+        var pomodorTime = 25;
         var shortBreakTime = 5;
         var longBreakTime = 15;
         $scope.isActive = false;
@@ -38,14 +38,13 @@
          * 
          */
         function init() {
-            console.warn("        INIT HAVE BEEN CALLED")
+            console.warn("INIT HAVE BEEN CALLED")
 
             //pause case
             var pauseState = store.getPause();
             if (pauseState) {
                 //restore to pause state
-                //                p$scope.initialRun = true;
-                console.warn("        INIT HAVE BEEN in PAUSE STATE")
+                console.warn("INIT HAVE BEEN in PAUSE STATE")
                 $scope.initialRun = false;
                 //                $rootScope.humanTime = "22:00";
                 $scope.current = {
@@ -152,7 +151,6 @@
                 $interval.cancel(timer);
 
 
-
             }
         };
 
@@ -174,7 +172,6 @@
             PomodoroService.GetTodaysCount()
                 .then(function (data) {
                     $scope.pomodoroCounter = parseInt(data);
-                    //                    $scope.pomodoroCounter = 25;
                     console.log('API - pomodor count is ' + data);
 
                 });
@@ -182,9 +179,8 @@
 
 
         function finish(pomodoro) {
-            var audio = new Audio('audio/Ship_Bell-Mike_Koenig-1911209136.mp3');
+            var audio = new Audio('assets/audio/Ship_Bell-Mike_Koenig-1911209136.mp3');
             audio.play();
-
 
             $scope.current = null;
             if (pomodoro) {
@@ -194,11 +190,15 @@
                 if (isLoggedIn) {
                     logged_addPomodoro();
                 }
-                var longBreak = false;
+                var islongBreak = false;
                 if ($scope.pomodoroCounter % 5 == 0) {
-                    longBreak = true;
+                    islongBreak = true;
                 }
-              
+                _runBreak(islongBreak);
+
+            } else {
+                console.log("break  just finished starting pomodoro");
+                _runPomodoro();
             }
 
         };
@@ -206,18 +206,17 @@
 
 
 
-
         function _executeTimer(isPomodoro) {
 
-
+            if(!isPomodoro){
+                $scope.isBreak = true;
+            }
             // Execute timer
             _runTimer(isPomodoro);
             // Set a 1s interval for the timer
             timer = $interval(function () {
                 _runTimer(isPomodoro);
             }, 1000);
-
-
         }
 
         function _runBreak(longBreak) {
@@ -247,6 +246,7 @@
 
         function _runPomodoro() {
 
+
             $scope.isBreak = false;
             $scope.current = {
                 left: pomodorTime * 60
@@ -268,11 +268,9 @@
         };
 
         function _runTimer(pomodoro) {
-            //            console.log(" $scope.isActive " + $scope.isActive);
             if ($scope.isActive && $scope.current) {
                 $scope.current.left -= 1;
                 humanizeTimeleft();
-
                 if ($scope.current.left <= 0) {
                     $interval.cancel(timer);
                     finish(pomodoro);
@@ -293,7 +291,6 @@
 
 
         function _pad(num, size) {
-
             var s = num + "";
             while (s.length < size) s = "0" + s;
             return s;

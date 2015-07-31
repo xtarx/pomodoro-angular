@@ -11,9 +11,8 @@
         $routeProvider
             .when('/', {
                 controller: 'pomodoroCtrl',
-//                controllerAs: 'vm',
-                templateUrl: 'app/pomodoro/pomodoro_plust_todo.html'
-
+                templateUrl: 'app/pomodoro/pomodoro_plust_todo.html',
+                controllerAs: 'vm'
             })
 
         .when('/login', {
