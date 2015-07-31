@@ -46,7 +46,6 @@
                 //restore to pause state
                 console.warn("INIT HAVE BEEN in PAUSE STATE")
                 $scope.initialRun = false;
-                //                $rootScope.humanTime = "22:00";
                 $scope.current = {
                     left: pauseState.timeLeft
                 };
@@ -64,8 +63,6 @@
                 if (currentTime < (res.startTime + res.duration)) {
                     var timeLeft = res.duration - (currentTime - res.startTime);
                     _resumeTimer(timeLeft, res.isPomodoro);
-
-
                 } else {
                     console.log(" no it alread passed");
                 }
